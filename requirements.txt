@@ -1,0 +1,6 @@
+openai
+PyPDF2
+tiktoken
+deepl
+yt_dlp
+youtube_transcript_api
