@@ -19,14 +19,14 @@ if 'download_file_names' not in st.session_state:
     st.session_state['download_file_names'] = []
 if 'download_buttons' not in st.session_state:
     st.session_state['download_buttons'] = False
-
+st.title("인공지능 이미지 생성기")
 def display_results():
     shorten_text_for_image = st.session_state['shorten_text_for_image']
     image_caption = st.session_state['image_caption']
     image_urls = st.session_state['image_urls']
 
-    st.sidebar.write("[이미지 생성을 위한 텍스트]")
-    st.sidebar.write(shorten_text_for_image)
+    st.write("[이미지 생성을 위한 텍스트]")
+    st.write(shorten_text_for_image)
 
     for k, image_url in enumerate(image_urls):
         st.image(image_url, caption = image_caption)
@@ -75,22 +75,22 @@ def button_callback():
     st.session_state['download_file_names'] = download_file_names
     st.session_state['images'] = images
 
-st.sidebar.title("이미지 생성을 위한 설정")
-input_text = st.sidebar.text_input("이미지 생성을 위한 설명을 입력하세요.", "빌딩이 보이는 호수가 있는 도시의 공원")
+st.title("이미지 생성을 위한 설정")
+input_text = st.text_input("이미지 생성을 위한 설명을 입력하세요.", "빌딩이 보이는 호수가 있는 도시의 공원")
 
-radio_selected_lang = st.sidebar.radio('입력한 언어', ['한국어', '영어'], index=0, horizontal =True)
+radio_selected_lang = st.radio('입력한 언어', ['한국어', '영어'], index=0, horizontal =True)
 
 image_num_options = [1,2,3]
-image_num = st.sidebar.radio('생성할 이미지 개수를 선택하세요.', image_num_options, index=0, horizontal=True)
+image_num = st.radio('생성할 이미지 개수를 선택하세요.', image_num_options, index=0, horizontal=True)
 
 image_size_options = ['256x256', '512x512', '1024x1024']
-image_size = st.sidebar.radio('생성할 이미지 크기를 선택하세요.', image_size_options, index=1, horizontal=True)
+image_size = st.radio('생성할 이미지 크기를 선택하세요.', image_size_options, index=1, horizontal=True)
 
-detail_description = st.sidebar.radio('상세 묘사를 추가하겠습니까?', ['Yes', 'No'], index=1 ,horizontal=True)
+detail_description = st.radio('상세 묘사를 추가하겠습니까?', ['Yes', 'No'], index=1 ,horizontal=True)
 
-clicked = st.sidebar.button('이미지 생성', on_click=button_callback)
+clicked = st.button('이미지 생성', on_click=button_callback)
 
-st.title("인공지능 이미지 생성기")
+
 
 if clicked or st.session_state['download_buttons'] == True:
     display_results()
